@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <link rel="icon" href="Комфорт.ico"/>
+<head>
+  <meta charset="UTF-8" />
+  <title>Добавить / Редактировать продукт</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      margin-top: 6px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1.8px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+      background: #fff;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: #5a9bf6;
+      outline: none;
+      box-shadow: 0 0 6px rgba(90,155,246,0.4);
+    }
+
+    button[type="submit"] {
+      background-color: #5a9bf6;
+      color: white;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3f7be0;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    p button {
+      background: none;
+      border: none;
+      color: #5a9bf6;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    p button:hover {
+      color: #3f7be0;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добавление / Редактирование продукции</h1>
+
+  <form id="product-form" autocomplete="off">
+    <label>
+      Артикул:
+      <input type="text" name="article" required placeholder="Введите артикул" />
+    </label>
+
+    <label>
+      Тип продукции:
+      <select name="type" id="typeSelect" required>
+        <option value="" disabled selected>Выберите тип продукции</option>
+      </select>
+    </label>
+
+    <label>
+      Наименование:
+      <input type="text" name="name" required placeholder="Введите наименование" />
+    </label>
+
+    <label>
+      Мин. цена (₽):
+      <input type="number" name="minPrice" step="0.01" min="0" required placeholder="0.00" />
+    </label>
+
+    <label>
+      Тип материала:
+      <select name="material" id="materialSelect" required>
+        <option value="" disabled selected>Выберите материал</option>
+      </select>
+    </label>
+
+    <button type="submit">Сохранить</button>
+  </form>
+
+  <p>
+    <button onclick="history.back()">← Вернуться назад</button>
+  </p>
+
+  <script src="scripts/add_edit.js"></script>
+</body>
+</html>

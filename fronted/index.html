@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Список продукции</title>
+  <link rel="icon" href="Комфорт.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #e0f2fe, #f8fafc);
+      color: #334155;
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 20px;
+      display: block;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      opacity: 0.85;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.75rem;
+      color: #1e40af;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-button {
+      background: linear-gradient(to right, #3b82f6, #2563eb);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+    .add-button:hover {
+      background: linear-gradient(to right, #2563eb, #1e3a8a);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      text-align: left;
+    }
+
+    thead {
+      background: linear-gradient(to right, #3b82f6, #2563eb);
+      color: #ffffff;
+    }
+
+    thead th {
+      padding: 14px 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+    }
+
+    tbody tr {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    tbody tr:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    tbody td {
+      padding: 16px 10px;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+
+    td.material {
+      color: #2563eb;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    td.min-price {
+      font-weight: 700;
+      color: #16a34a;
+    }
+
+    td.workshops {
+      font-style: italic;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    td.actions,
+    td.calc {
+      text-align: center;
+    }
+
+    td.actions button,
+    td.calc button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    td.actions button:hover,
+    td.calc button:hover {
+      background-color: #2563eb;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tbody tr {
+        margin-bottom: 20px;
+        border-radius: 12px;
+        padding: 16px;
+        background: white;
+      }
+
+      tbody td {
+        position: relative;
+        padding-left: 130px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      tbody td:last-child {
+        border-bottom: none;
+      }
+
+      tbody td::before {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: #64748b;
+        width: 100px;
+      }
+
+      tbody td:nth-of-type(1)::before { content: "Артикул"; }
+      tbody td:nth-of-type(2)::before { content: "Тип"; }
+      tbody td:nth-of-type(3)::before { content: "Наименование"; }
+      tbody td:nth-of-type(4)::before { content: "Мин. цена (₽)"; }
+      tbody td:nth-of-type(5)::before { content: "Материал"; }
+      tbody td:nth-of-type(6)::before { content: "Действия"; }
+      tbody td:nth-of-type(7)::before { content: "Цеха"; }
+      tbody td:nth-of-type(8)::before { content: "Калькулятор"; }
+
+      td.actions button,
+      td.calc button {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="Комфорт.png" alt="Логотип компании Комфорт" class="logo" />
+  <h1>Продукция компании</h1>
+
+
+  <table id="product-table" aria-describedby="Описание таблицы продукции">
+    <thead>
+      <tr>
+        <th>Артикул</th>
+        <th>Тип</th>
+        <th>Наименование</th>
+        <th>Мин. цена (₽)</th>
+        <th>Материал</th>
+        <th>Действия</th>
+        <th>Цеха</th>
+        <th>Калькулятор</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Данные будут подгружаться через JS -->
+    </tbody>
+  </table>
+
+  <script src="scripts/index.js"></script>
+</body>
+</html>

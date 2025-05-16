@@ -1,0 +1,33 @@
+Table products {
+  _id ObjectId [pk]
+  article string
+  type string
+  name string
+  minPrice float
+  material string
+}
+
+Table workshops {
+  _id ObjectId [pk]
+  name string
+  workerCount int
+}
+
+Table productworkshops {
+  _id ObjectId [pk]
+  productId ObjectId [ref: > products._id]
+  workshopId ObjectId [ref: > workshops._id]
+  timeHours float
+}
+
+Table producttypes {
+  _id ObjectId [pk]
+  typeName string
+  coefficient float
+}
+
+Table materialtypes {
+  _id ObjectId [pk]
+  materialName string
+  wastePercent float
+}
